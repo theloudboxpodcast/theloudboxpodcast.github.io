@@ -14,7 +14,7 @@
         :root {
             --bg-color: #0f0f12;
             --card-bg: #1a1a24;
-            --accent-color: #ff0050; /* TikTok Neon Accent */
+            --accent-color: #ff0000; /* YouTube Red Accent */
             --text-main: #ffffff;
             --text-muted: #a0a0b0;
         }
@@ -54,7 +54,7 @@
         }
 
         main {
-            max-width: 480px; /* Slimmer layout for crisp vertical video alignment */
+            max-width: 800px; /* Widescreen spacing for landscape video layout */
             margin: 0 auto;
             padding: 2rem;
         }
@@ -77,10 +77,10 @@
             overflow: hidden;
         }
 
-        /* Perfect portrait ratio box for vertical TikTok frames */
+        /* Responsive widescreen 16:9 box ratio */
         .video-container {
             position: relative;
-            padding-bottom: 140%; 
+            padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -116,10 +116,9 @@
         <div class="player-card">
             <div class="video-container">
                 <iframe 
-                    src="https://www.tiktok.com/embed/v2/ldZc2p3b0kn1NdEq" 
+                    src="https://www.youtube.com/embed/pMnoxIh02I4?start=13" 
                     allowfullscreen 
-                    scrolling="no" 
-                    allow="encrypted-media;">
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
                 </iframe>
             </div>
         </div>
