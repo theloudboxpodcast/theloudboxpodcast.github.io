@@ -14,7 +14,7 @@
         :root {
             --bg-color: #0f0f12;
             --card-bg: #1a1a24;
-            --accent-color: #ff3e3e;
+            --accent-color: #1DB954; /* Spotify Green */
             --text-main: #ffffff;
             --text-muted: #a0a0b0;
         }
@@ -27,7 +27,7 @@
             padding: 0;
             line-height: 1.6;
             
-            /* Prevents scrapers from easily dragging/selecting your text data */
+            /* Prevents scrapers from easily selecting/dragging your text data */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -84,7 +84,7 @@
         }
 
         .card-banner {
-            background: linear-gradient(135deg, #2c0e0e 0%, #16161f 100%);
+            background: linear-gradient(135deg, #0e2c18 0%, #16161f 100%);
             padding: 4rem 2rem;
             text-align: center;
             position: relative;
@@ -100,13 +100,13 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem auto;
-            box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
         }
 
         .play-icon svg {
             width: 30px;
             height: 30px;
-            fill: white;
+            fill: #000000;
             margin-left: 4px;
         }
 
@@ -130,9 +130,9 @@
         .btn-action {
             display: inline-block;
             background-color: var(--accent-color);
-            color: white;
+            color: #000000;
             padding: 0.75rem 2rem;
-            border-radius: 8px;
+            border-radius: 20px;
             font-weight: bold;
             font-size: 1rem;
         }
@@ -155,7 +155,7 @@
     <main>
         <div class="section-title">Latest Investigative Drops</div>
         
-        <a id="secure-hub-link" href="#" target="_blank" class="showcase-card">
+        <a href="https://open.spotify.com/episode/68oI6p4qI3O5rA5X7gE1Y8" target="_blank" class="showcase-card">
             <div class="card-banner">
                 <div class="play-icon">
                     <svg viewBox="0 0 24 24">
@@ -175,15 +175,5 @@
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Clean, verified link string that directs straight to your episode page
-            const cleanDestination = "aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2VwaXNvZGUvNjhvSTZwNHFJM081ckE1WDdnRTFZOA==";
-            const element = document.getElementById("secure-hub-link");
-            if (element) {
-                element.href = atob(cleanDestination);
-            }
-        });
-    </script>
 </body>
 </html>
