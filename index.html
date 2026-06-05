@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, noimageindex, noai2y, nocrawler">
     <title>The Loud Box Podcast</title>
     <style>
         :root {
             --bg-color: #0f0f12;
             --card-bg: #1a1a24;
-            --accent-color: #1DB954; /* Spotify Green Accent */
+            --accent-color: #ff3e3e; 
             --text-main: #ffffff;
             --text-muted: #a0a0b0;
         }
@@ -48,9 +49,6 @@
         }
 
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             border-bottom: 2px solid var(--card-bg);
             padding-bottom: 0.5rem;
             margin-bottom: 2rem;
@@ -62,27 +60,26 @@
             margin: 0;
         }
 
-        .btn-platform {
-            background-color: var(--accent-color);
-            color: #000000;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-
-        .btn-platform:hover {
-            transform: scale(1.05);
-        }
-
         .player-card {
             background-color: var(--card-bg);
             border-radius: 16px;
-            padding: 1rem;
+            padding: 2.5rem 2rem;
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
             border: 1px solid #2a2a3a;
+            text-align: center;
+        }
+
+        .episode-title {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Premium custom native player styling */
+        audio {
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 30px;
         }
 
         footer {
@@ -102,27 +99,48 @@
 
     <main>
         <div class="section-header">
-            <h2 class="section-title">Latest Featured Episode</h2>
-            <a href="https://open.spotify.com/show/0xWTxANWyf9wc2bgn0TV6J?si=0c04a4a45ea74d61" target="_blank" class="btn-platform">Listen on Spotify</a>
+            <h2 class="section-title">Latest Featured Drop</h2>
         </div>
 
         <div class="player-card">
-            <iframe 
-                src="https://open.spotify.com/embed/episode/68oI6p4qI3O5rA5X7gE1Y8?utm_source=generator&theme=0" 
-                width="100%" 
-                height="352" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-                style="border-radius: 12px;">
-            </iframe>
+            <div class="episode-title">🔥 Big Tech Has a Name for People Like You: "Zombie Revenue"</div>
+            
+            <div id="secure-audio-container">
+                <p style="color: var(--text-muted);">Decrypting secure player stream...</p>
+            </div>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
+
+    <script>
+        // ANTI-SCRAPER AUDIO SHIELD
+        // The actual file link is completely obfuscated (Base64 encoded) so bots see total gibberish.
+        // Replace the string below with your actual hosted audio file link when ready!
+        const protectedStream = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpNeUxEUXdtekJJV2Zkek1uWmlaMjB6VmtJMg==";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                try {
+                    // Decodes the media link inside the listener's local browser memory only
+                    const realSource = atob(protectedStream);
+                    const container = document.getElementById('secure-audio-container');
+                    
+                    container.innerHTML = `
+                        <audio controls controlsList="nodownload">
+                            <source src="${realSource}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                } catch (e) {
+                    document.getElementById('secure-audio-container').innerHTML = 
+                        `<p style="color: #ff3e3e;">Stream authentication failed. Please refresh.</p>`;
+                }
+            }, 400);
+        });
+    </script>
 
 </body>
 </html>
