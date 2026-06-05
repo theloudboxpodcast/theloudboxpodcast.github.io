@@ -83,6 +83,22 @@
             border: 0;
         }
 
+        .fallback-msg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-muted);
+            text-align: center;
+            width: 80%;
+        }
+
+        .fallback-msg a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         footer {
             text-align: center;
             padding: 4rem 2rem;
@@ -103,12 +119,7 @@
 
         <div class="episode-card">
             <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/videoseries?list=UU_a4g8g-I72zH-7b7qE8ySg" 
-                    title="The Loud Box Latest Content" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
+                <div id="video-placeholder" class="fallback-msg">Loading latest episode...</div>
             </div>
         </div>
     </main>
@@ -116,6 +127,42 @@
     <footer>
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Your specific YouTube Channel ID derived from your upload playlist
+        const channelId = "UC_a4g8g-I72zH-7b7qE8ySg"; 
+        
+        // Using an open RSS-to-JSON converter to fetch your public video feed safely without API keys
+        const rssFeedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+
+        fetch(rssFeedUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok' && data.items.length > 0) {
+                    // Get the link of the most recent video
+                    const latestVideoUrl = data.items[0].link;
+                    // Extract the 11-character video ID
+                    const videoId = latestVideoUrl.split('v=')[1];
+                    
+                    // Replace the placeholder with a perfectly working embedded player
+                    document.getElementById('video-placeholder').outerHTML = `
+                        <iframe 
+                            src="https://www.youtube.com/embed/${videoId}" 
+                            title="The Loud Box Latest Content" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>`;
+                } else {
+                    throw new Error('Could not parse feed');
+                }
+            })
+            .catch(error => {
+                console.error("Error loading latest YouTube video:", error);
+                // Clean fallback UI if the network request ever gets blocked
+                document.getElementById('video-placeholder').innerHTML = 
+                    `Watch our latest investigative drops directly on our <a href="https://www.youtube.com/channel/${channelId}" target="_blank">YouTube Channel</a>.`;
+            });
+    </script>
 
 </body>
 </html>
