@@ -158,49 +158,106 @@
     </footer>
 
     <script>
-    // Your complete vault of 85 sequential content keys mapped directly in memory
-    const archiveVault = [
-        "bsZ6PzQOoN0", "iw7uVB0aSt4", "BiFfalTHS18", "Ixc1hRHkz0s", "taxvalL8f-A",
-        "5XfT20wLHHs", "YX0s_XdFbV4", "A8AbtQE5TGw", "_8LhPc6ZuaA", "CFwbQ6Bcl8s",
-        "pMnoxIh02I4", "uU0mLTha3BY", "umNXDaJHgBE", "5yG312q-czk", "AHaDdl4H_eg",
-        "IphmwT5MoAU", "64d3ktx08KQ", "8orzdYUYILI", "UM2RTxIPIXc", "INKe7DtfWi4",
-        "pjTqyjFSXMY", "Oxu_m_rVtPI", "RrrIiq86J48", "V10k7lwPqvA", "ri9liNAI778",
-        "yv9N2yrRRvs", "S3zbq4eZ0Kg", "U2809Xr_ofI", "JCxK76AiATo", "HXAV__U51CQ",
-        "suPCHENxoIw", "_jC8T978Tbw", "1CmFukNGRXE", "mw-A9ZbrqLc", "dq_D9AoAr5I",
-        "a9R6sSrUfHY", "IMvBcinCbkI", "vv6Te4-Gffk", "eT1F6EzsZT0", "kESFEkQRnY8",
-        "5p2E6An-hH4", "AnIcuM4MNHA", "_XP3lXmDzOg", "pJOM8hsaGB0", "9lfxDCWTk_s",
-        "GbGDKwLRFEU", "vRvflOff2Jk", "mifUfS3Erus", "i8k69rgk1m0", "l2Yq0Dla1AY",
-        "yoHrn9KWuew", "ZaZ99ci5XkQ", "ygz9GkiOvPo", "V1aU1QaXDro", "kcF4W0EwbyU",
-        "81qN4bl9u94", "7WMCfrAtD7w", "wZaZ1fM1aPQ", "N595mvEq25k", "7-srLklkdks",
-        "2jgRg9KazIM", "B4gKi8SkKa8", "H9J93yqfW3U", "kOBCIigb0Sw", "8lW4Vf-yecQ",
-        "2vnMii86_V4", "i6pjo-ctXDY", "jU-XDJCVFwk", "nqibE9fmvaw", "LhFgNSoa0LQ",
-        "n5-zvMbvBlA", "FNrYXWlgwvs", "XZJmVlXzAhk", "oCa8gfQF8Bc", "9mpuoMyyc4Y",
-        "1EXCqHIZTpE", "9wYdg5mRB8A", "lkOfm-YCcy4", "cNi5oxyCEak", "_5EMM_FEusg",
-        "r1YrwjJQHf8", "5NY2iHK-i38", "6gBS4WqZWCM", "FPPBJ0ScLD8", "8cE_Z353RHw"
-    ];
+    // The Master Library Map: ID paired with Title
+    const libraryMap = {
+        "pMnoxIh02I4": "WHY WALMART WARNED CONSUMERS FIRST...",
+        "bsZ6PzQOoN0": "THEY ARE COMING FOR YOUR WATER WHILE YOU’RE DISTRACTED BY THE AI HYPE",
+        "iw7uVB0aSt4": "WHY SOCIAL MEDIA IS MAKING US LONELIER THAN EVER",
+        "BiFfalTHS18": "How Algorithms Control Your Choices",
+        "Ixc1hRHkz0s": "Inside The Orchard: The Invisible Merger of Big Tech and Your Brain",
+        "taxvalL8f-A": "They Said It Was for Collaboration. The Contract Says 'Screenshots Every 30 Seconds'",
+        "5XfT20wLHHs": "Your Community Is Just an Algorithm Feeding You Trash",
+        "YX0s_XdFbV4": "The Phone Number Trap: How Big Tech Sold You Security",
+        "A8AbtQE5TGw": "I BROKE MY OWN RULE TO MAKE THIS. I HOPE IT WAS WORTH IT.",
+        "_8LhPc6ZuaA": "WHAT THEY HID ABOUT AI",
+        "CFwbQ6Bcl8s": "HOW POLLSTERS STOPPED CALLING PEOPLE AND STARTED PREDICTING YOU",
+        "uU0mLTha3BY": "The Hidden Psychology of Free Technology",
+        "umNXDaJHgBE": "Why Marie Antoinette Is Actually Running America",
+        "5yG312q-czk": "IS GOGUARDIAN SPYING ON YOUR KIDS? THE SHOCKING TRUTH",
+        "AHaDdl4H_eg": "HUMAN VS HUMANOID: WHO WINS THE 2026 LABOR WAR?",
+        "IphmwT5MoAU": "OBSOLETE: Why the New World Order Doesn’t Need Humans",
+        "64d3ktx08KQ": "AI TAKING JOBS? THE TERRIFYING TRUTH ABOUT QUIET FIRING",
+        "8orzdYUYILI": "Attention for Sale: The Truth About Passive Income",
+        "UM2RTxIPIXc": "U.S. SNAP Benefits Policy Update 2026 (Part 2)",
+        "INKe7DtfWi4": "U.S. SNAP Benefits Policy Update 2026: Why Millions Are Still Losing Coverage",
+        "pjTqyjFSXMY": "What the Headlines Missed: The Subzero Siege & Minneapolis Unrest",
+        "Oxu_m_rVtPI": "Stop Being the Product: How to Evict the Algorithm from Your Mind",
+        "RrrIiq86J48": "AMERICA VS. CHINA: WORLD WAR",
+        "V10k7lwPqvA": "The Marriage Fraud Trap: What U.S. Law Really Says",
+        "ri9liNAI778": "Who Is Designing the New World Order? The Cognitive Elite.",
+        "yv9N2yrRRvs": "IS CASH APP AND VENMO SAFE? CBDCS & FINANCIAL PRIVACY",
+        "S3zbq4eZ0Kg": "What If Your Bank Account Expired Tomorrow?",
+        "U2809Xr_ofI": "The Relentless Pendulum | The Illusion of Forward",
+        "JCxK76AiATo": "Humanity over Blind Obedience",
+        "HXAV__U51CQ": "The Illusion of Forward: Why Modern Life Feels Empty",
+        "suPCHENxoIw": "I AM THE TABLE.",
+        "_jC8T978Tbw": "HERE'S WHY THEY DON'T REALLY WANT YOU BUYING A HOUSE",
+        "1CmFukNGRXE": "How Tech Giants Use Language to Scatter Society",
+        "mw-A9ZbrqLc": "0% Oversight: How $17.5 Billion a Year Bypasses the Taxpayer",
+        "dq_D9AoAr5I": "The 330,000 Job Purge: AI Is Eating the Workforce",
+        "a9R6sSrUfHY": "WE BUILT IT",
+        "IMvBcinCbkI": "HIDDEN TECH",
+        "vv6Te4-Gffk": "The Loud Box (an American Audio Podcast) - Listen in March 2025",
+        "eT1F6EzsZT0": "LIQUID GOLD: WATER IN THE PIPES",
+        "kESFEkQRnY8": "The 5GB Trap: Why They Make it Impossible to Leave the Cloud",
+        "5p2E6An-hH4": "Why Your Views Just Dropped: The 2026 TikTok Policy Overhaul",
+        "AnIcuM4MNHA": "U.S. Food Supply Policy 2026",
+        "_XP3lXmDzOg": "The Data Center Tax: Why Your Power Bill is Up 42%",
+        "pJOM8hsaGB0": "If you have to ask, you’re at the wrong table.",
+        "9lfxDCWTk_s": "The Trojan Horse: Gift or Trap? (Part 1 of 2)",
+        "GbGDKwLRFEU": "Why the Holidays Bring Out the Worst in Families",
+        "vRvflOff2Jk": "Why Are Ai Creators Constantly Warning Us About The Dangers",
+        "mifUfS3Erus": "Permission Granted?",
+        "i8k69rgk1m0": "GET ME OUT OF THE CLOUD!",
+        "l2Yq0Dla1AY": "The system isn't broken—it’s functioning exactly as intended.",
+        "yoHrn9KWuew": "The Obsolete Man: Is The Twilight Zone Becoming Our Reality?",
+        "ZaZ99ci5XkQ": "Big tech has a name for people like you: zombie revenue",
+        "ygz9GkiOvPo": "DATA CENTERS ARE THE NEW LIQUID GOLD",
+        "V1aU1QaXDro": "The Quiet Panic: 20 Remote Jobs & 20 Tips to Protect Your Future",
+        "kcF4W0EwbyU": "15 Years Waiting for a Ring",
+        "81qN4bl9u94": "You Think You Own Your Home? They've Already Moved the Title.",
+        "7WMCfrAtD7w": "Life Ain’t Been No Crystal Stair",
+        "wZaZ1fM1aPQ": "DATA CENTERS ARE THE NEW LIQUID GOLD",
+        "N595mvEq25k": "QUICK HITS",
+        "7-srLklkdks": "The Forbidden Fruit: Babel 2.0",
+        "2jgRg9KazIM": "The Loneliness Business: Why Dating Apps Want You Single",
+        "B4gKi8SkKa8": "THE CHASE: THE FIRST WEEK BLITZ",
+        "H9J93yqfW3U": "What the hell are they feeding us in America!",
+        "kOBCIigb0Sw": "THE ALGORITHM IS GOD",
+        "8lW4Vf-yecQ": "The Trojan Horse: Psychological Tactics Exposed",
+        "2vnMii86_V4": "YOU ARE THE PRODUCT: SOLD!",
+        "i6pjo-ctXDY": "The Trojan Horse: Gift or Trap?",
+        "jU-XDJCVFwk": "The AI Rabbit Hole: Why You Can’t Stop Scrolling",
+        "nqibE9fmvaw": "The AI Rabbit Hole: Why You Can’t Stop Scrolling",
+        "LhFgNSoa0LQ": "The Forbidden Fruit: The Orchard (Part 1 of 2)",
+        "n5-zvMbvBlA": "After the Mic: Had I Known Life Was a Facade",
+        "FNrYXWlgwvs": "I AM IT.",
+        "XZJmVlXzAhk": "The Predator's Sanctuary: When Home Isn't Safe",
+        "oCa8gfQF8Bc": "I Made My Family & Friends...Disappear",
+        "9mpuoMyyc4Y": "Had I Known... Why Doing Everything Right Still Leads to Loss",
+        "1EXCqHIZTpE": "The Grid: Unplugged",
+        "9wYdg5mRB8A": "When Democracy Went Quiet",
+        "lkOfm-YCcy4": "WE ARE THE ENGINE.",
+        "cNi5oxyCEak": "The Dobbs Effect: Workforce Reality",
+        "_5EMM_FEusg": "No Flying/No Travel via Planes",
+        "r1YrwjJQHf8": "One Notice Away: The Brutal Reality of Renting",
+        "5NY2iHK-i38": "Three-Card Monte: Modern Presidency Misdirection",
+        "6gBS4WqZWCM": "THE CHASE: HOW TRUMP RUNS THE HUSTLE",
+        "FPPBJ0ScLD8": "Digital Hustler | Attention for Sale",
+        "8cE_Z353RHw": "The Trojan Horse | Psychological Tactics - (Part 2 of 2)"
+    };
 
-    // Automatically compile menu selections on load
-    document.addEventListener("DOMContentLoaded", () => {
-        const dropdown = document.getElementById("stream-feed");
-        archiveVault.forEach((id, index) => {
-            const option = document.createElement("option");
-            option.value = id;
-            // Formats list beautifully (e.g., "Investigative Drop #85")
-            option.textContent = `Investigative Drop #${archiveVault.length - index}`;
-            dropdown.appendChild(option);
-        });
-        
-        // Set the player default
-        dropdown.value = "pMnoxIh02I4";
-        switchDrop("pMnoxIh02I4");
+    const dropdown = document.getElementById("stream-feed");
+    // Sort by Title for readability or keep order as you like
+    Object.entries(libraryMap).forEach(([id, title]) => {
+        const option = document.createElement("option");
+        option.value = id;
+        option.textContent = title;
+        dropdown.appendChild(option);
     });
 
-    // Instant, client-side player switching
     function switchDrop(videoID) {
-        const player = document.getElementById("podcast-player");
-        if (player) {
-            player.src = `https://www.youtube.com/embed/${videoID}`;
-        }
+        document.getElementById('podcast-player').src = 'https://www.youtube.com/embed/' + videoID;
     }
 </script>
 </body>
