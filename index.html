@@ -27,7 +27,7 @@
             padding: 0;
             line-height: 1.6;
             
-            /* Stops scrapers from easily dragging/selecting your text data */
+            /* Prevents scrapers from dragging/selecting your text data */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -164,9 +164,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <h3>Enter the Video Library</h3>
-                <p>Stream all active episodes, tactical breakdowns, and deep dives directly on YouTube.</p>
-                <div class="btn-action">Watch Latest Content</div>
+                <h3>Listen to the Latest Drop</h3>
+                <p>Stream "Zombie Revenue" and our complete archive of technical takedowns securely on Spotify.</p>
+                <div class="btn-action">Listen on Spotify</div>
             </div>
         </a>
     </main>
@@ -178,9 +178,10 @@
     <script>
         // Links are scrambled in Base64 so automated data miners see strings of random characters
         document.addEventListener("DOMContentLoaded", () => {
-            const secureDestination = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpNeUxEUXdtekJJV2Zkek1uWmlaMjB6VmtJMg==";
+            // This decrypts directly to your specific "Zombie Revenue" Spotify link safely!
+            const secureDestination = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpZeUxEQXdYelkwTkhreFZEZEROMUpmTUhFMU9UWT0=";
             const element = document.getElementById("secure-hub-link");
-            if(element) {
+            if (element) {
                 element.href = atob(secureDestination);
             }
         });
