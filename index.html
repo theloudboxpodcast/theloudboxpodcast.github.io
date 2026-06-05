@@ -129,40 +129,42 @@
     </footer>
 
     <script>
-        // Your specific YouTube Channel ID derived from your upload playlist
-        const channelId = "UC_a4g8g-I72zH-7b7qE8ySg"; 
-        
-        // Using an open RSS-to-JSON converter to fetch your public video feed safely without API keys
+        const channelId = "UC_a4g8g-I72zH-7b7qE8ySg";
         const rssFeedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 
         fetch(rssFeedUrl)
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'ok' && data.items.length > 0) {
-                    // Get the link of the most recent video
                     const latestVideoUrl = data.items[0].link;
-                    // Extract the 11-character video ID
-                    const videoId = latestVideoUrl.split('v=')[1];
                     
-                    // Replace the placeholder with a perfectly working embedded player
-                    document.getElementById('video-placeholder').outerHTML = `
-                        <iframe 
-                            src="https://www.youtube.com/embed/${videoId}" 
-                            title="The Loud Box Latest Content" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen>
-                        </iframe>`;
+                    // Smart detection: extracts ID whether it's a standard video or a short
+                    let videoId = "";
+                    if (latestVideoUrl.includes('v=')) {
+                        videoId = latestVideoUrl.split('v=')[1].split('&')[0];
+                    } else if (latestVideoUrl.includes('/shorts/')) {
+                        videoId = latestVideoUrl.split('/shorts/')[1].split('?')[0];
+                    }
+
+                    if (videoId) {
+                        document.getElementById('video-placeholder').outerHTML = `
+                            <iframe 
+                                src="https://www.youtube.com/embed/${videoId}" 
+                                title="The Loud Box Latest Content" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>`;
+                    } else {
+                        throw new Error('ID missing');
+                    }
                 } else {
-                    throw new Error('Could not parse feed');
+                    throw new Error('Feed issue');
                 }
             })
             .catch(error => {
                 console.error("Error loading latest YouTube video:", error);
-                // Clean fallback UI if the network request ever gets blocked
-                document.getElementById('video-placeholder').innerHTML = 
-                    `Watch our latest investigative drops directly on our <a href="https://www.youtube.com/channel/${channelId}" target="_blank">YouTube Channel</a>.`;
+                document.getElementById('video-placeholder').innerHTML = `Watch our latest investigative drops directly on our <a href="https://www.youtube.com/channel/${channelId}" target="_blank">YouTube Channel</a>.`;
             });
     </script>
-
 </body>
 </html>
