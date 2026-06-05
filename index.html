@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Loud Box Podcast</title>
+    <style>
+        :root {
+            --bg-color: #0f0f12;
+            --card-bg: #1a1a24;
+            --accent-color: #ff3e3e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
+        header {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #16161f 0%, var(--bg-color) 100%);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem 0;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        .episode-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .episode-date {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .episode-card h3 {
+            margin: 0.5rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        .episode-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Loud Box</h1>
+        <p>An Intellectual Library of Storytelling. Deep dives into daily news and investigative topics as they pertain to Big Tech, politics, and social behaviors.</p>
+    </header>
+
+    <main>
+        <div class="section-title">Latest Episodes</div>
+
+        <div class="episode-card">
+            <span class="episode-date">Coming Soon</span>
+            <h3>The Inaugural Audio Story</h3>
+            <p>Welcome to the library. Our independent audio feeds and investigative deep dives are currently being prepared for deployment. Stand by for the first release, hosted entirely free from corporate platform control.</p>
+            
+            <audio controls>
+                <source src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </main>
+
+    <footer>
+        <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
