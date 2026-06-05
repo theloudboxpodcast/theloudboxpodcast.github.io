@@ -14,7 +14,7 @@
         :root {
             --bg-color: #0f0f12;
             --card-bg: #1a1a24;
-            --accent-color: #1DB954; /* Spotify Green */
+            --accent-color: #ff3e3e; /* Red Accent */
             --text-main: #ffffff;
             --text-muted: #a0a0b0;
         }
@@ -27,7 +27,7 @@
             padding: 0;
             line-height: 1.6;
             
-            /* Prevents scrapers from easily selecting/dragging your text data */
+            /* Stops scrapers from easily dragging/selecting your text data */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -54,7 +54,7 @@
         }
 
         main {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -67,69 +67,31 @@
             color: var(--text-muted);
         }
 
-        .showcase-card {
+        .player-card {
             background-color: var(--card-bg);
             border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 1rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
             border: 1px solid #2a2a3a;
-            padding-bottom: 2.5rem;
-            display: block;
+            overflow: hidden;
         }
 
-        .card-banner {
-            background: linear-gradient(135deg, #0e2c18 0%, #16161f 100%);
-            padding: 4rem 2rem;
-            text-align: center;
+        /* Makes the video player perfectly responsive on mobile and desktop */
+        .video-container {
             position: relative;
-            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
         }
 
-        .play-icon {
-            width: 70px;
-            height: 70px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem auto;
-            box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
-        }
-
-        .play-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: #000000;
-            margin-left: 4px;
-        }
-
-        .card-body {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .card-body h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.6rem;
-            color: var(--text-main);
-        }
-
-        .card-body p {
-            margin: 0 0 2rem 0;
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .audio-wrapper {
-            max-width: 85%;
-            margin: 0 auto;
-        }
-
-        audio {
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-radius: 30px;
-            outline: none;
+            height: 100%;
+            border: 0;
         }
 
         footer {
@@ -148,46 +110,22 @@
     </header>
 
     <main>
-        <div class="section-title">Latest Investigative Drops</div>
-        
-        <div class="showcase-card">
-            <div class="card-banner">
-                <div class="play-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="card-body">
-                <h3>Listen to the Latest Drop</h3>
-                <p>Stream "Zombie Revenue" securely and directly below without third-party tracking cookies.</p>
-                
-                <div class="audio-wrapper">
-                    <audio id="secure-player" controls controlsList="nodownload">
-                        <p style="color: var(--text-muted);">Your browser does not support native playback.</p>
-                    </audio>
-                </div>
+        <div class="section-title">Latest Featured Episode</div>
+
+        <div class="player-card">
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
+        <p>© 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Your streaming link is scrambled here in Base64 memory so scrapers only find a text cipher.
-        // Replace this string with your encrypted .mp3 or audio host link when ready!
-        document.addEventListener("DOMContentLoaded", () => {
-            const shieldStream = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpZeUxEQXdYelkwTkhreFZEZEROMUpmTUhFMU9UWT0=";
-            const player = document.getElementById("secure-player");
-            if (player) {
-                const streamSource = document.createElement("source");
-                streamSource.src = atob(shieldStream);
-                streamSource.type = "audio/mpeg";
-                player.appendChild(streamSource);
-            }
-        });
-    </script>
 </body>
 </html>
