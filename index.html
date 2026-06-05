@@ -27,7 +27,7 @@
             padding: 0;
             line-height: 1.6;
             
-            /* Prevents scrapers from dragging/selecting your text data */
+            /* Prevents scrapers from easily dragging/selecting your text data */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -176,13 +176,12 @@
     </footer>
 
     <script>
-        // Links are scrambled in Base64 so automated data miners see strings of random characters
         document.addEventListener("DOMContentLoaded", () => {
-            // This decrypts directly to your specific "Zombie Revenue" Spotify link safely!
-            const secureDestination = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpZeUxEQXdYelkwTkhreFZEZEROMUpmTUhFMU9UWT0=";
+            // Clean, verified link string that directs straight to your episode page
+            const cleanDestination = "aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2VwaXNvZGUvNjhvSTZwNHFJM081ckE1WDdnRTFZOA==";
             const element = document.getElementById("secure-hub-link");
             if (element) {
-                element.href = atob(secureDestination);
+                element.href = atob(cleanDestination);
             }
         });
     </script>
