@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, noimageindex, noai2y, nocrawler">
     <title>The Loud Box Podcast</title>
     <style>
         :root {
             --bg-color: #0f0f12;
             --card-bg: #1a1a24;
-            --accent-color: #ff3e3e; 
+            --accent-color: #ff3e3e;
             --text-main: #ffffff;
             --text-muted: #a0a0b0;
         }
@@ -43,43 +42,87 @@
         }
 
         main {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        .section-header {
+        .section-title {
+            font-size: 1.5rem;
             border-bottom: 2px solid var(--card-bg);
             padding-bottom: 0.5rem;
             margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
             color: var(--text-muted);
-            margin: 0;
         }
 
-        .player-card {
+        .showcase-card {
             background-color: var(--card-bg);
             border-radius: 16px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid #2a2a3a;
+            transition: transform 0.2s, border-color 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .card-banner {
+            background: linear-gradient(135deg, #2c0e0e 0%, #16161f 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .play-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+        }
+
+        .play-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 4px;
+        }
+
+        .card-body {
+            padding: 2rem;
             text-align: center;
         }
 
-        .episode-title {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
+        .card-body h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.6rem;
+            color: var(--text-main);
         }
 
-        /* Premium custom native player styling */
-        audio {
-            width: 100%;
-            margin-top: 1rem;
-            border-radius: 30px;
+        .card-body p {
+            margin: 0 0 1.5rem 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .btn-action {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
         }
 
         footer {
@@ -98,49 +141,27 @@
     </header>
 
     <main>
-        <div class="section-header">
-            <h2 class="section-title">Latest Featured Drop</h2>
-        </div>
+        <div class="section-title">Latest Investigative Drops</div>
 
-        <div class="player-card">
-            <div class="episode-title">🔥 Big Tech Has a Name for People Like You: "Zombie Revenue"</div>
-            
-            <div id="secure-audio-container">
-                <p style="color: var(--text-muted);">Decrypting secure player stream...</p>
+        <a href="https://www.youtube.com/@theloudboxpodcast/videos" target="_blank" class="showcase-card">
+            <div class="card-banner">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
             </div>
-        </div>
+            <div class="card-body">
+                <h3>Enter the Video Library</h3>
+                <p>Stream all active episodes, tactical breakdowns, and deep dives directly on YouTube.</p>
+                <div class="btn-action">Watch Latest Content</div>
+            </div>
+        </a>
     </main>
 
     <footer>
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
-
-    <script>
-        // ANTI-SCRAPER AUDIO SHIELD
-        // The actual file link is completely obfuscated (Base64 encoded) so bots see total gibberish.
-        // Replace the string below with your actual hosted audio file link when ready!
-        const protectedStream = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpNeUxEUXdtekJJV2Zkek1uWmlaMjB6VmtJMg==";
-
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                try {
-                    // Decodes the media link inside the listener's local browser memory only
-                    const realSource = atob(protectedStream);
-                    const container = document.getElementById('secure-audio-container');
-                    
-                    container.innerHTML = `
-                        <audio controls controlsList="nodownload">
-                            <source src="${realSource}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                    `;
-                } catch (e) {
-                    document.getElementById('secure-audio-container').innerHTML = 
-                        `<p style="color: #ff3e3e;">Stream authentication failed. Please refresh.</p>`;
-                }
-            }, 400);
-        });
-    </script>
 
 </body>
 </html>
