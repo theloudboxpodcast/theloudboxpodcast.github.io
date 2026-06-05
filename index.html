@@ -58,34 +58,10 @@
         .episode-card {
             background-color: var(--card-bg);
             border-radius: 12px;
-            padding: 2rem;
+            padding: 1rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border-left: 4px solid var(--accent-color);
-        }
-
-        .episode-date {
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .episode-card h3 {
-            margin: 0.5rem 0 1rem 0;
-            font-size: 1.8rem;
-        }
-
-        .episode-card p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        audio {
-            width: 100%;
-            margin-top: 1rem;
-            border-radius: 8px;
         }
 
         footer {
@@ -107,13 +83,19 @@
         <div class="section-title">Latest Episodes</div>
 
         <div class="episode-card">
-            <span class="episode-date">Coming Soon</span>
-            <h3>The Inaugural Audio Story</h3>
-            <p>Welcome to the library. Our independent audio feeds and investigative deep dives are currently being prepared for deployment. Stand by for the first release, hosted entirely free from corporate platform control.</p>
-            
-            <iframe src="https://open.spotify.com/episode/1mKCUNPiXuO0wRYX8vuQEW?si=ZF0B0StITm6zBeet4f0OqQ" width="100%" height="352" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 8px;">
+                <iframe 
+                    src="https://www.youtube.com/embed/videoseries?list=PLLE7j1M6fGrRO1EAvy-5D6uPYMV6hikNj" 
+                    title="The Loud Box Archive" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                </iframe>
+            </div>
         </div>
-        </main>
+
+    </main>
 
     <footer>
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
