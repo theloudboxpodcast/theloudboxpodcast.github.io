@@ -42,26 +42,60 @@
         }
 
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        .section-title {
-            font-size: 1.5rem;
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 2px solid var(--card-bg);
             padding-bottom: 0.5rem;
             margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
             color: var(--text-muted);
+            margin: 0;
+        }
+
+        .btn-youtube {
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn-youtube:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsive Video Layout Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
         }
 
         .episode-card {
             background-color: var(--card-bg);
             border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 2rem;
+            padding: 1.2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border-left: 4px solid var(--accent-color);
+        }
+
+        .episode-card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
         }
 
         .video-container {
@@ -83,22 +117,6 @@
             border: 0;
         }
 
-        .fallback-msg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--text-muted);
-            text-align: center;
-            width: 80%;
-        }
-
-        .fallback-msg a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
         footer {
             text-align: center;
             padding: 4rem 2rem;
@@ -115,12 +133,25 @@
     </header>
 
     <main>
-        <div class="section-title">Latest Episodes</div>
+        <div class="section-header">
+            <h2 class="section-title">Featured Drops</h2>
+            <a href="https://www.youtube.com/channel/UC_a4g8g-I72zH-7b7qE8ySg" target="_blank" class="btn-youtube">Subscribe on YouTube</a>
+        </div>
 
-        <div class="episode-card">
-            <div class="video-container">
-                <div id="video-placeholder" class="fallback-msg">Loading latest episode...</div>
+        <div class="video-grid">
+            
+            <div class="episode-card">
+                <h3>America vs. China: The New Cold War</h3>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="America vs China" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
+
         </div>
     </main>
 
@@ -128,43 +159,5 @@
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
 
-    <script>
-        const channelId = "UC_a4g8g-I72zH-7b7qE8ySg";
-        const rssFeedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-
-        fetch(rssFeedUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'ok' && data.items.length > 0) {
-                    const latestVideoUrl = data.items[0].link;
-                    
-                    // Smart detection: extracts ID whether it's a standard video or a short
-                    let videoId = "";
-                    if (latestVideoUrl.includes('v=')) {
-                        videoId = latestVideoUrl.split('v=')[1].split('&')[0];
-                    } else if (latestVideoUrl.includes('/shorts/')) {
-                        videoId = latestVideoUrl.split('/shorts/')[1].split('?')[0];
-                    }
-
-                    if (videoId) {
-                        document.getElementById('video-placeholder').outerHTML = `
-                            <iframe 
-                                src="https://www.youtube.com/embed/${videoId}" 
-                                title="The Loud Box Latest Content" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>`;
-                    } else {
-                        throw new Error('ID missing');
-                    }
-                } else {
-                    throw new Error('Feed issue');
-                }
-            })
-            .catch(error => {
-                console.error("Error loading latest YouTube video:", error);
-                document.getElementById('video-placeholder').innerHTML = `Watch our latest investigative drops directly on our <a href="https://www.youtube.com/channel/${channelId}" target="_blank">YouTube Channel</a>.`;
-            });
-    </script>
 </body>
 </html>
