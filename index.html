@@ -158,7 +158,7 @@
     </footer>
 
     <script>
-        // Your complete vault of 85 sequential content keys mapped directly in memory
+    // Your complete vault of 85 sequential content keys mapped directly in memory
     const archiveVault = [
         "bsZ6PzQOoN0", "iw7uVB0aSt4", "BiFfalTHS18", "Ixc1hRHkz0s", "taxvalL8f-A",
         "5XfT20wLHHs", "YX0s_XdFbV4", "A8AbtQE5TGw", "_8LhPc6ZuaA", "CFwbQ6Bcl8s",
@@ -179,29 +179,29 @@
         "r1YrwjJQHf8", "5NY2iHK-i38", "6gBS4WqZWCM", "FPPBJ0ScLD8", "8cE_Z353RHw"
     ];
 
-        // Automatically compile menu selections on load
-        document.addEventListener("DOMContentLoaded", () => {
-            const dropdown = document.getElementById("stream-feed");
-            archiveVault.forEach((id, index) => {
-                const option = document.createElement("option");
-                option.value = id;
-                // Formats list beautifully (e.g., "Episode 1", "Episode 2")
-                option.textContent = `Investigative Drop #${archiveVault.length - index}`;
-                dropdown.appendChild(option);
-            });
-            
-            // Set the player default to your latest highlighted drop automatically
-            dropdown.value = "pMnoxIh02I4";
-            switchDrop("pMnoxIh02I4");
+    // Automatically compile menu selections on load
+    document.addEventListener("DOMContentLoaded", () => {
+        const dropdown = document.getElementById("stream-feed");
+        archiveVault.forEach((id, index) => {
+            const option = document.createElement("option");
+            option.value = id;
+            // Formats list beautifully (e.g., "Investigative Drop #85")
+            option.textContent = `Investigative Drop #${archiveVault.length - index}`;
+            dropdown.appendChild(option);
         });
+        
+        // Set the player default
+        dropdown.value = "pMnoxIh02I4";
+        switchDrop("pMnoxIh02I4");
+    });
 
-        // Instant, client-side player switching
-        function switchDrop(videoID) {
-            const player = document.getElementById("podcast-player");
-            if (player) {
-                player.src = `https://www.youtube.com/embed/${videoID}`;
-            }
+    // Instant, client-side player switching
+    function switchDrop(videoID) {
+        const player = document.getElementById("podcast-player");
+        if (player) {
+            player.src = `https://www.youtube.com/embed/${videoID}`;
         }
-    </script>
+    }
+</script>
 </body>
 </html>
