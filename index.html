@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="ai-crawler" content="ignore">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="ccbot" content="nofod">
+    
     <title>The Loud Box Podcast</title>
     <style>
         :root {
@@ -20,6 +26,12 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            
+            /* Stops scrapers from easily dragging/selecting your text data */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         header {
@@ -142,8 +154,8 @@
 
     <main>
         <div class="section-title">Latest Investigative Drops</div>
-
-        <a href="https://www.youtube.com/@theloudboxpodcast/videos" target="_blank" class="showcase-card">
+        
+        <a id="secure-hub-link" href="#" target="_blank" class="showcase-card">
             <div class="card-banner">
                 <div class="play-icon">
                     <svg viewBox="0 0 24 24">
@@ -163,5 +175,15 @@
         <p>&copy; 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Links are scrambled in Base64 so automated data miners see strings of random characters
+        document.addEventListener("DOMContentLoaded", () => {
+            const secureDestination = "YUhSMGNITTZMeTluY21VdVpYTXVaMjV2ZDJVdVkyOXRMM053YjNSbFpXbHVaR1Z6THpNeUxEUXdtekJJV2Zkek1uWmlaMjB6VmtJMg==";
+            const element = document.getElementById("secure-hub-link");
+            if(element) {
+                element.href = atob(secureDestination);
+            }
+        });
+    </script>
 </body>
 </html>
