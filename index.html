@@ -54,7 +54,7 @@
         }
 
         main {
-            max-width: 800px; /* Widescreen spacing for landscape video layout */
+            max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -63,9 +63,33 @@
             font-size: 1.5rem;
             border-bottom: 2px solid var(--card-bg);
             padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: var(--text-muted);
             text-align: center;
+        }
+
+        /* Playlist Control Center styling */
+        .selector-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .episode-dropdown {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid #2a2a3a;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            transition: border-color 0.2s;
+        }
+
+        .episode-dropdown:focus {
+            border-color: var(--accent-color);
         }
 
         .player-card {
@@ -77,10 +101,9 @@
             overflow: hidden;
         }
 
-        /* Responsive widescreen 16:9 box ratio */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; 
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -111,12 +134,18 @@
     </header>
 
     <main>
-        <div class="section-title">Latest Featured Drop</div>
+        <div class="section-title">Select an Episode from the Library</div>
+        
+        <div class="selector-container">
+            <select id="stream-feed" class="episode-dropdown" onchange="switchDrop(this.value)">
+                </select>
+        </div>
 
         <div class="player-card">
             <div class="video-container">
                 <iframe 
-                    src="https://www.youtube.com/embed/pMnoxIh02I4?start=13" 
+                    id="podcast-player"
+                    src="https://www.youtube.com/embed/pMnoxIh02I4" 
                     allowfullscreen 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
                 </iframe>
@@ -128,5 +157,51 @@
         <p>© 2026 The Loud Box Podcast. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Your complete vault of 85 sequential content keys mapped directly in memory
+        const archiveVault = [
+            "bsZ6PzQOoN0", "iw7uVB0aSt4", "BiFfalTHS18", "Ixc1hRHkz0s", "taxvalL8f-A",
+            "5XfT20wLHHs", "YX0s_XdFbV4", "A8AbtQE5TGw", "_8LhPc6ZuaA", "CFwbQ6Bcl8s",
+            "pMnoxIh02I4", "uU0mLTha3BY", "umNXDaJHgBE", "5yG312q-czk", "AHaDdl4H_eg",
+            "IphmwT5MoAU", "64d3ktx08KQ", "8orzdYUYILI", "UM2RTxIPIXc", "INKe7DtfWi4",
+            "pjTqyjFSXMY", "Oxu_m_rVtPI", "RrrIiq86J48", "V10k7lwPqvA", "ri9liNAI778",
+            "yv9N2yrRRvs", "S3zbq4eZ0Kg", "U2809Xr_ofI", "JCxK76AiATo", "HXAV__U51CQ",
+            "suPCHENxoIw", "_jC8T978Tbw", "1CmFukNGRXE", "mw-A9ZbrqLc", "dq_D9AoAr5I",
+            "a9R6sSrUfHY", "IMvBcinCbkI", "vv6Te4-Gffk", "eT1F6EzsZT0", "kESFEkQRnY8",
+            "5p2E6An-hH4", "AnIcuM4MNHA", "_XP3lXmDzOg", "pJOM8hsaGB0", "9lfxDCWTk_s",
+            "GbGDKwLRFEU", "vRvflOff2Jk", "mifUfS3Erus", "i8k69rgk1m0", "l2Yq0Dla1AY",
+            "yoHrn9KWuew", "ZaZ99ci5XkQ", "ygz9GkiOvPo", "V1aU1QaXDro", "kcF4W0EwbyU",
+            "81qN4bl9u94", "7WMCfrAtD7w", "wZaZ1fM1aPQ", "N595mvEq25k", "7-srLklkdks",
+            "2jgRg9KazIM", "B4gKi8SkKa8", "H9J93yqfW3U", "kOBCIigb0Sw", "8lW4Vf-yecQ",
+            "2vnMii86_V4", "i6pjo-ctXDY", "jU-XDJCVFwk", nqibE9fmvaw, "LhFgNSoa0LQ",
+            "n5-zvMbvBlA", "FNrYXWlgwvs", "XZJmVlXzAhk", "oCa8gfQF8Bc", "9mpuoMyyc4Y",
+            "1EXCqHIZTpE", "9wYdg5mRB8A", "lkOfm-YCcy4", "cNi5oxyCEak", "_5EMM_FEusg",
+            "r1YrwjJQHh8", "5NY2iHK-i38", "6gBS4WqZWCM", "FPPBJ0ScLD8", "8cE_Z353RHw"
+        ];
+
+        // Automatically compile menu selections on load
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdown = document.getElementById("stream-feed");
+            archiveVault.forEach((id, index) => {
+                const option = document.createElement("option");
+                option.value = id;
+                // Formats list beautifully (e.g., "Episode 1", "Episode 2")
+                option.textContent = `Investigative Drop #${archiveVault.length - index}`;
+                dropdown.appendChild(option);
+            });
+            
+            // Set the player default to your latest highlighted drop automatically
+            dropdown.value = "pMnoxIh02I4";
+            switchDrop("pMnoxIh02I4");
+        });
+
+        // Instant, client-side player switching
+        function switchDrop(videoID) {
+            const player = document.getElementById("podcast-player");
+            if (player) {
+                player.src = `https://www.youtube.com/embed/${videoID}`;
+            }
+        }
+    </script>
 </body>
 </html>
